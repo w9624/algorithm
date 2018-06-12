@@ -57,5 +57,21 @@ public class SelectionSort {
 			}
 		}
 	}
+	
+	/**
+	 * —°‘Ò≈≈–Ú
+	 * @param arr
+	 */
+	public static void selectWithBoard(int[] arr, int low, int high) {
+		for (int i = low; i < high; low++) {
+			for (int j = i + 1; j < high; j++) {
+				if (arr[i] > arr[j]) {
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+	}
 
 }
