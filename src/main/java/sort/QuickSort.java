@@ -35,7 +35,7 @@ public class QuickSort {
 			sort_one(arr, low, pos - 1);       //对左边数字序列排序
 			sort_one(arr, pos + 1, high);      //对右边数字序列排序
 		} else {
-			SelectionSort.selectWithBoard(arr, low, high);
+			SelectionSort.select(arr, low, high);
 			return;
 		}
 	}
