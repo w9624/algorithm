@@ -36,6 +36,7 @@ public class QuickSort {
 			sort_one(arr, pos + 1, high);      //对右边数字序列排序
 		} else {
 			SelectionSort.selectWithBoard(arr, low, high);
+			return;
 		}
 	}
 	
@@ -81,7 +82,7 @@ public class QuickSort {
 		/*Random random = new Random();
 		index = (int) (Math.abs(random.nextInt()) % (high - low + 1)) + low;*/
 		//三元法获取下标
-		/*int mid = (low + high) / 2;
+		int mid = (low + high) / 2;
 		if (arr[low] < arr[high]) {
 			if (arr[low] > arr[mid]) {
 				index = low;
@@ -90,10 +91,14 @@ public class QuickSort {
 			}else {
 				index = mid;
 			}
-		}*/
+		}
 		//交换index位置和哨兵位置
-		int temp = arr[index];
-		arr[index] = arr[low];
-		arr[low] = temp;
+		swap(arr, low, index);
+	}
+	
+	public static void swap(int[] arr, int low, int high) {
+		int temp = arr[low];
+		arr[low] = arr[high];
+		arr[high] = temp;
 	}
 }
