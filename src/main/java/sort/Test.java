@@ -8,17 +8,17 @@ import impl.Tools;
 public class Test {
 
 	public static void main(String[] args) {
-		int[] arr = new int[10000];//{7, 7, 8, 6, 4, 1, 8, 9, 2, 9};////{44,23,34,33,66,22,23,56,54,32, 45}; 
+		int[] arr = new int[1000000];//{7, 7, 8, 6, 4, 1, 8, 9, 2, 9};////{44,23,34,33,66,22,23,56,54,32, 45}; 
 		produce(arr);
 		Tools.display(arr);
 		int[] arr_one = arr.clone();
 		int[] arr_two = arr.clone();
 		long start, end;
 		
-		/*start = System.currentTimeMillis();
-		InsertionSort.insert(arr_two);
+		start = System.currentTimeMillis();
+		QuickSort.quick(arr_two);
 		end = System.currentTimeMillis();
-		System.out.println((end - start) + "..." + check(arr_one));*/
+		System.out.println((end - start) + "...");
 		
 		
 		/*start = System.currentTimeMillis();
@@ -29,19 +29,19 @@ public class Test {
 		
 		start = System.currentTimeMillis();
 		//BobbleSort.bobble(arr);
-		SelectionSort.select(arr);
+		HeapSort.heap(arr);
 		end = System.currentTimeMillis();
 		
-		for (int i = 0; i < arr.length; i++) {
+		/*for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + ", ");
-		}
-		System.out.println((end - start) + "..."+ check(arr));
+		}*/
+		System.out.println((end - start) + "...");
 		//
 		
-		start = System.currentTimeMillis();
+		/*start = System.currentTimeMillis();
 		SelectionSort.select_one(arr_two);
 		end = System.currentTimeMillis();
-		System.out.println((end - start) + "..."+ check(arr_two));
+		System.out.println((end - start) + "..."+ check(arr_two));*/
 		
 		/*start = System.currentTimeMillis();
 		BobbleSort.bobble_two(arr_one);
@@ -53,8 +53,8 @@ public class Test {
 		
 		Random random = new Random();
 		
-		for (int i = 0; i < 10000; i++) {
-			arr[i] = random.nextInt(10000);
+		for (int i = 0; i < 100000; i++) {
+			arr[i] = random.nextInt(1000000);
 		}
 		return arr;
 	}
