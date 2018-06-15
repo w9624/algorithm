@@ -53,4 +53,28 @@ public class BinarySearch {
 			return mid;
 		}
 	}
+	
+	/**
+	 * 在arr中high之前的数字有序
+	 * 返回刚好比key小的值得下标，所以返回的下标所在位置不发生移动
+	 * @param arr
+	 * @param key
+	 * @return 
+	 */
+	public static int searchForIndex(int[] arr, int key, int high) {
+		int low = 0;
+		int mid = high;
+		while (low <= high) {
+			mid = (low + high) / 2;
+			if(key > arr[mid]) {
+				low = mid + 1;
+			}else if (key < arr[mid]) {
+				high = mid - 1;
+			}else {
+				return mid;
+			}
+		}
+		
+		return mid;
+	}
 }

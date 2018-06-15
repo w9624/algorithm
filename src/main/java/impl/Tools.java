@@ -1,6 +1,8 @@
 package impl;
 
+import java.sql.Time;
 import java.util.Arrays;
+import java.util.Random;
 
 public interface Tools {
 	
@@ -40,4 +42,47 @@ public interface Tools {
 		return true;
 	}
 
+	public static void compare() {
+		
+	}
+	
+	/**
+	 * 获取随机数组
+	 * @param num
+	 * @return
+	 */
+	public static int[] randomAray(int num) {
+		if (num <= 0) {
+			num = 10000;
+		}
+		
+		int[] arr = new int[num];
+		Random random = new Random();
+		
+		for (int i = 0; i < num; i++) {
+			arr[i] = random.nextInt(num);
+		}
+		return arr;
+	}
+	
+	public static void getUsingTime(Type type) {
+		switch (type) {
+			case BOBBLE:
+				break;
+			case QUICK:
+				break;
+			case SELECT:
+				break;
+			case HEAP:
+				break;
+			case INSERT:
+				break;
+			case SHELL:
+				break;
+	
+			default:
+				break;
+		}
+	}
 }
+ 
