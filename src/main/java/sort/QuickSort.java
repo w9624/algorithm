@@ -31,21 +31,21 @@ public class QuickSort {
 	}
 	
 	private static void sort_one(int[] arr, int low, int high) {
-		//对数组长度不大于10的时候，采用选择排序
-		if (high - low > 11) {
-			int pos = partition(arr, low, high); //low-high之间的数完成一次快速排序排序
+		/*//对数组长度不大于10的时候，采用选择排序
+		if (high - low > 10) {
+			InsertionSort.insert(arr, low, high);
+			return;
+		} else*/while (low < high) {
+			int pos = partition_one(arr, low, high); //low-high之间的数完成一次快速排序排序
 			sort_one(arr, low, pos - 1);       //对左边数字序列排序
 			low = pos + 1;      //优化尾递归
-		} else {
-			SelectionSort.select(arr, low, high);
-			return;
 		}
 	}
 	
 	private static int partition(int[] arr, int low, int high) {
 		
 	  //直接从最前端获取监视哨兵
-	  int temp = selectPivot(arr, low, high, 0); 
+	  int temp = arr[low];
 	  
 		while (low < high) {
 		  //从high开始与哨兵比较，比哨兵大则指针向前移动,直至找到比哨兵小的数字
@@ -77,7 +77,7 @@ public class QuickSort {
 	private static int partition_one(int[] arr, int low, int high) {
 			
 		  //直接从最前端获取监视哨兵
-	  int temp = selectPivot(arr, low, high, 0); 
+	  int temp = selectPivot(arr, low, high, 3); 
 	  int left = low, head = low, right = high, tail = high;
 	  int leftLen = 0, rightLen = 0;
 		while (low < high) {
@@ -162,6 +162,6 @@ public class QuickSort {
 			Tools.swap(arr, index, low);
 		}
 		
-		return low;
+		return arr[low];
 	}
 }

@@ -67,8 +67,8 @@ public class SelectionSort {
 	 * @param arr
 	 */
 	public static void select(int[] arr, int low, int high) {
-		for (int i = low; i <= high; i++) {
-			int temp = low;
+		for (int i = low; i < high; i++) {
+			int temp = i;
 			for (int j = i + 1; j <= high; j++) {
 				if (arr[temp] > arr[j]) {
 					temp = j;
@@ -78,6 +78,7 @@ public class SelectionSort {
 			if (i != temp) {
 				Tools.swap(arr, i, temp);
 			}
+//			Tools.display(arr);
 		}
 	}
 

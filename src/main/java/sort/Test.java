@@ -3,32 +3,37 @@ package sort;
 import java.util.Arrays;
 import java.util.Random;
 
+import javax.tools.Tool;
+
 import impl.Tools;
 
 public class Test {
 
 	public static void main(String[] args) {
-		int[] arr =   new int[100000];//{7, 7, 8, 6, 4, 1, 8, 9, 2, 9};//{44,23,34,33,66,22,23,56,54,32, 45};
+		int[] arr =   new int[20000000];////{44,23,34,33,66,22,23,56,54,32, 45};
 		produce(arr);
-		Tools.display(arr);
+		//Tools.display(arr);
 		int[] arr_one = arr.clone();
 		int[] arr_two = arr.clone();
 		long start, end;
 		
-		start = System.currentTimeMillis();
-		QuickSort.quick_one(arr_two);
+		/*start = System.currentTimeMillis();
+		QuickSort.quick(arr_two);
 		end = System.currentTimeMillis();
-		System.out.println((end - start) + "..." + Tools.isOrderAsc(arr_two));
+		System.out.println((end - start) + "..." + Tools.isOrderAsc(arr_two));*/
 		//Tools.display(arr_two);
 		
-		
-		/*start = System.currentTimeMillis();
-		int[] temp = {6, 9, 12, 34 ,4 ,12,2,1231212,-1, 7, 4 ,99,98, 0};
-		ShellSort.shell(arr_one, 7);
-		end = System.currentTimeMillis();
-		System.out.println((end - start) + "...");
+		/*int[] array = {7, 7, 8, 6, 4, 1, 8, 9, 2, 9};
+		MergeSort.merge(array);
+		Tools.display(array);*/
 		
 		start = System.currentTimeMillis();
+		int[] temp = {6, 9, 12, 34 ,4 ,12,2,1231212, 7, 4 ,99,98, 0};
+		BucketSort.bucket_one(temp);
+		end = System.currentTimeMillis();
+		System.out.println((end - start) + "..." + Tools.isOrderAsc(temp));
+		
+		/*start = System.currentTimeMillis();
 		//BobbleSort.bobble(arr);
 		ShellSort.shell(arr, 3);
 		end = System.currentTimeMillis();
@@ -75,8 +80,8 @@ public class Test {
 		
 		Random random = new Random();
 		
-		for (int i = 0; i < 100000; i++) {
-			arr[i] = random.nextInt(100000);
+		for (int i = 0; i < 20000000; i++) {
+			arr[i] = random.nextInt(20000000);
 		}
 		return arr;
 	}

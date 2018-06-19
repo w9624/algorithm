@@ -47,6 +47,19 @@ public interface Tools {
 	}
 	
 	/**
+	 * 获取数组中最大值
+	 * @param arr
+	 * @return
+	 */
+	static int maxValue(int[] arr) {
+		int min = 0;
+		for (int i = 0; i < arr.length - 1; i++) {
+			min = arr[min] < (arr[i + 1]) ? i + 1 : min;
+		}
+		return arr[min];
+	}
+	
+	/**
 	 * 获取随机数组
 	 * @param num
 	 * @return
