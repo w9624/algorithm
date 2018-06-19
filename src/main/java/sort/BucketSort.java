@@ -39,7 +39,7 @@ public class BucketSort {
 		head.count++;
 		Node current = head;
 		
-		for (int i = 1; i < arr.length; i++) {  //将数字放入桶
+		for (int i = 1; i < arr.length; i++) {  //将数字放入桶中
 			do {
 				if (current.data < arr[i]) {
 					
