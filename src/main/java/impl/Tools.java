@@ -1,6 +1,5 @@
 package impl;
 
-import java.sql.Time;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -47,16 +46,35 @@ public interface Tools {
 	}
 	
 	/**
-	 * 获取数组中最大值
+	 * 获取数组中最大和最小值
 	 * @param arr
 	 * @return
 	 */
-	static int maxValue(int[] arr) {
+	static int[] max_min_Value(int[] arr) {
+		
 		int min = 0;
+		int max = 0;
 		for (int i = 0; i < arr.length - 1; i++) {
-			min = arr[min] < (arr[i + 1]) ? i + 1 : min;
+			min = arr[min] < (arr[i + 1]) ? min : i + 1;  //没用math函数
+			max = arr[max] > (arr[i + 1]) ? max : i + 1;
 		}
-		return arr[min];
+		return new int[]{arr[min], arr[max], arr[max] - arr[min] + 1};
+	}
+	
+	/**
+	 * 获取给定长度数组中最大和最小值
+	 * @param arr
+	 * @return
+	 */
+	static int max(int[] arr, int low, int high) {
+		
+		int max = low;
+		for (int i = low; i < high && high < arr.length; i++) {
+			if (arr[max] < arr[i + 1]) {
+				max = i + 1;
+			}
+		}
+		return arr[max];
 	}
 	
 	/**

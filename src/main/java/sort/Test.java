@@ -29,7 +29,7 @@ public class Test {
 		
 		start = System.currentTimeMillis();
 		int[] temp = {6, 9, 12, 34 ,4 ,12,2,1231212, 7, 4 ,99,98, 0};
-		BucketSort.bucket_one(temp);
+		BucketSort.bucket(temp);
 		end = System.currentTimeMillis();
 		System.out.println((end - start) + "..." + Tools.isOrderAsc(temp));
 		
