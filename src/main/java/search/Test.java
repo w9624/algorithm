@@ -11,9 +11,10 @@ public class Test {
 		
 		long start, end;
 		start = System.currentTimeMillis();
-		int temp = BlockSearch.search(arr, 3);
+		int[] temp = BlockSearch.index(arr, 2);
 		end = System.currentTimeMillis();
-		System.out.println((end - start) + " ... " + temp);
+		Tools.display(temp);
+		System.out.println((end - start) + " ... ");
 	}
 
 }

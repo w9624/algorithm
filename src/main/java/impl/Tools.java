@@ -41,8 +41,18 @@ public interface Tools {
 		return true;
 	}
 
-	public static void compare() {
-		
+	/**
+	 * 比较整数i, j
+	 * @param i
+	 * @param j
+	 * @param type 返回值，type=0返回小值， type=1返回大的值
+	 * @return 
+	 */
+	public static int compare(int i, int j, int type) {
+		if (type == 0) {
+			return i < j ? i : j;
+		}
+		return i > j ? i : j;
 	}
 	
 	/**
@@ -94,6 +104,18 @@ public interface Tools {
 			arr[i] = random.nextInt(num);
 		}
 		return arr;
+	}
+	
+	/**
+	 * clone一个数组到一个新数组中
+	 * @param arr
+	 */
+	public static int[] clone(int[] arr) {
+		int[] temp = new int[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			temp[i] = arr[i];
+		}
+		return temp;
 	}
 	
 	public static void getUsingTime(Type type) {
