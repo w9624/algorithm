@@ -3,6 +3,10 @@ package impl;
 
 public interface Sort {
 
-	void sort();
+	/**
+	 * 排序
+	 * @param arr
+	 */
+	void sort(int[] arr);
 	
 }

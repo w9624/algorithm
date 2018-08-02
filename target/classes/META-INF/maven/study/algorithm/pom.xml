@@ -4,6 +4,8 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Arithmetic</name>
   <description>用于实现和优化各种常用的算法</description>
+  <artifactId>algorithm</artifactId>
+  <url>www.nwuer.xyz</url>
   
   <dependencies>
   	<dependency>
@@ -25,5 +27,5 @@
         <scope>test</scope>
     </dependency>
   </dependencies>
-  <artifactId>algorithm</artifactId>
+  
 </project>
