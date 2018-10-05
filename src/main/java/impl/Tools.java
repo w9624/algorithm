@@ -107,6 +107,24 @@ public interface Tools {
 	}
 	
 	/**
+	 * 获取均匀数组
+	 * @param num
+	 * @return
+	 */
+	public static int[] orderAray(int num) {
+		if (num <= 0) {
+			num = 10000;
+		}
+		
+		int[] arr = new int[num];
+		
+		for (int i = 0; i < num; i++) {
+			arr[i] = i;
+		}
+		return arr;
+	}
+	
+	/**
 	 * clone一个数组到一个新数组中
 	 * @param arr
 	 */

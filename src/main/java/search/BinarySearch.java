@@ -1,13 +1,14 @@
 package search;
 
 import impl.Complexity;
+import impl.Search;
 
 /**
  * @author ^_^
  * 二分查找
- * 前提：由小到大排好序的数组
+ * 前提：顺序存储，关键字大小有序
  */
-public class BinarySearch {
+public class BinarySearch implements Search{
 
 	/**
 	 * 循环查找
@@ -18,9 +19,9 @@ public class BinarySearch {
 	@Complexity(time="log n", space="0")
 	public static int search (int[] arr, int key) {
 		int low = 0, high = arr.length - 1;
-		int mid;
+		
 		while (low <= high) { //执行n次，时间复杂度（n/2^k）>= 1, 所以k = log n
-			mid = (low + high) / 2;
+			int mid = (low + high) >> 1;
 			if(key > arr[mid]) {
 				low = mid + 1;
 			}else if (key < arr[mid]) {
@@ -34,7 +35,7 @@ public class BinarySearch {
 	}
 	
 	/**
-	 * 递归查找
+	 * 递归实现
 	 * @param arr
 	 * @param low
 	 * @param high
@@ -48,7 +49,7 @@ public class BinarySearch {
 			return -1;
 		}
 		
-		int mid = (low + high) / 2; //每次一分为2，会划分log n次比较的次数为log n，空间复杂度为数的深度 log n
+		int mid = (low + high) >> 1; //每次一分为2，会划分log n次比较的次数为log n，空间复杂度为数的深度 log n
 		if (key > arr[mid]) {
 			return recursive(arr, mid + 1, high, key);
 		}else if (key < arr[mid]) {
