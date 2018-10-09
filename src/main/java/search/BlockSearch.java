@@ -1,65 +1,157 @@
 package search;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import sort.QuickSort;
 
 /**
- * 无法理解，既然能给他分块，若要是算法时间复杂度足够简单
- * 那么数组应当是有序的，既然数组是有序的，二分查找不是更快？
- * 除非块是自然分好的，一般来说也不可能啊！
- * 除非可进行人为分块，并且时间复杂度比排序好很多，否则得不偿失。。
- * @author Administrator
+ * Q:无法理解，既然能给他分块，若要是算法时间复杂度足够简单 那么数组应当是有序的，既然数组是有序的，二分查找不是更快？
+ * A:分块可以使用平均值的方法或者排序找出值，分块之后可以使用链表进行存储使得插入删除变得简单
+ * 
+ * @author wangrz
  *
  */
 public class BlockSearch {
-	
+
+	// 默认分为4块
+	private int bs = 4;
+	// 数组
+	private int[] arr;
+	// 索引表
+	private Index[] index;
+
 	/**
-	 * 分块查找，默认分为10块
+	 * @param arr
+	 */
+	public BlockSearch(int[] arr) {
+		this.arr = arr;
+		block();
+	}
+
+	/**
+	 * @param arr
+	 * @param bs
+	 */
+	public BlockSearch(int[] arr, int bs) {
+		this(arr);
+		this.bs = bs;
+		block();
+	}
+
+	/**
+	 * 进行分块
+	 */
+	private void block() {
+		QuickSort.quick(arr);
+		index = new Index[bs];
+		int step = (arr.length - 1) / bs;
+		for (int i = 0; i < bs - 1; i++) {
+			int val = arr[step * (i + 1)];
+			index[i] = new Index(val, null);
+		}
+		index[index.length - 1] = new Index(arr[arr.length - 1], null);
+		for (int i : arr) {
+			insert(i);
+		}
+	}
+
+	/**
+	 * 插入值
+	 * 
+	 * @param val
+	 */
+	public void insert(int val) {
+		int mid = find(val);
+		if (index[mid].point == null) {
+			index[mid].point = new Node(val);
+		} else {
+			Node p = index[mid].point;
+			Node n = new Node(val);
+			n.next = p.next;
+			p.next = n;
+		}
+	}
+
+	/**
+	 * @return
+	 * 
+	 */
+	private int find(int val) {
+		// 对索引进行二分查找
+		int low = 0, high = index.length - 1;
+		int mid = 0;
+		while (low <= high) {
+			mid = (low + high) / 2;
+			if (val == index[mid].val) {
+				break;
+			} else if (val < index[mid].val) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+		if (low >= high) {
+			mid = low;
+		}
+		return mid;
+	}
+
+	/**
+	 * 分块查找，默认分为4块
+	 * 
 	 * @param arr
 	 * @param key
 	 * @param index
 	 * @return
 	 */
-	public static int search(int[] arr, int[] index, int step, int key) {
-		int idx_1 = BinarySearch.searchForBlockSearch(index, key);
-		System.err.println(index);
-		int idx_2 = SequenceSearch.search(arr, key, step * idx_1 , step * (idx_1 + 1) - 1);
-		return idx_2;
-	}
-	
-	/*public static int[] block(int[] arr, int step){
-		int n = arr.length;
-		if (step <= 0) {step = n / 10 + 1;}
-		int[] tempArr = new int[n / step + 1];
-		
-		for (int i = 0; i < n / step + 1; i++) {
-				int max = Tools.max(arr, i * step , (i + 1) * step - 1);
-				tempArr[i] = max;
-		}
-		
-		Tools.display(tempArr);
-		
-		int index = BinarySearch.searchForBlockSearch(tempArr, key);
-		System.err.println(index);
-		
-		index = SequenceSearch.search(tempArr, key, step * index , step * (index + 1) - 1);
-		
-		return new int[]{1};
-	}*/
-	
-	public static int[] index(int[] arr, int step) {
-		int n = arr.length;
-		int len = (n+1) / step;
-		int[] index = new int[len];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < len; j++) {
-				if (arr[i] > index[0]) {
-					index[0] = arr[i];
+	public int search(int key) {
+		int mid = find(key);
+		if (index[mid].val == key) {
+			return mid;
+		}else {
+			Node p = index[mid].point;
+			while (p != null) {
+				if (p.val == key) {
+					return index[mid].val; 
 				}
+				p = p.next;
 			}
-			
-			QuickSort.quick(index);
 		}
-		return index;
+		return -1;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("分块输出：\n");
+		for (int i = 0; i < index.length; i++) {
+			Node p = index[i].point;
+			sb.append("index: " + index[i].val + "：");
+			while (p != null) {
+				sb.append(p.val + " ");
+				p = p.next;
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
+	}
+}
+
+final class Index {
+	int val;
+	Node point;
+
+	public Index(int val, Node point) {
+		this.val = val;
+		this.point = point;
+	}
+}
+
+class Node {
+	int val;
+	Node next;
+
+	public Node(int val) {
+		this.val = val;
+	}
 }

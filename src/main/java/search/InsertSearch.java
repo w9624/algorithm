@@ -10,12 +10,12 @@ import impl.Complexity;
 public class InsertSearch {
 
 	/**
-	 * 循环查找
+	 * 循环
 	 * @param arr
 	 * @param key
 	 * @return 
 	 */
-	@Complexity(time="log n", space="0") //最好情况是log log n
+	@Complexity(time="log n", space="0", ASL="log(log n)") //最好情况是log log n
 	public static int search (int[] arr, int key) {
 		int low = 0, high = arr.length - 1;
 		while (low <= high) { //执行n次，时间复杂度（n/2^k）>= 1, 所以k = log n

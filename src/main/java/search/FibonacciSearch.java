@@ -1,5 +1,6 @@
 package search;
 
+import impl.Complexity;
 import impl.Search;
 
 /**
@@ -7,6 +8,12 @@ import impl.Search;
  * @author ^_^
  * 斐波拉契查找
  * 前提：顺序存储，键值有序
+ * 步骤：
+ * 1. 获取斐波拉契数组
+ * 2. 获取比数组长度大的F(k)-1
+ * 3. 构造数组temp[f(k) - 1]，将多余部分填充为temp[n-1]
+ * 4. 对数组查找进行斐波那契划分
+ * F[k]-1:划分的时候去除一个f[k - 1]，左边为f[k - 1] - 1,右边为f[k-2] - 1
  */
 public class FibonacciSearch implements Search{
 	
@@ -16,6 +23,7 @@ public class FibonacciSearch implements Search{
 	 * @param key
 	 * @return
 	 */
+	@Complexity(time = "log n", space = "0", ASL="log n")
 	public static int search(int[] arr, int key) {
 		//生成斐波拉契数列
 		int[] fib = new int[45];
@@ -40,7 +48,6 @@ public class FibonacciSearch implements Search{
 			temp[i] = arr[n - 1];
 		}
 		
-		long start = System.currentTimeMillis();
 		//查找
 	  int low = 0, high = n - 1;
 	  while (low <= high) {
@@ -53,15 +60,12 @@ public class FibonacciSearch implements Search{
 				pos -= 2;
 			}else {
 				if (mid < n) {
-				  System.out.println("F Time :" + (System.currentTimeMillis() - start));
 					return mid;
 				}else {
-				  System.out.println("F Time :" + (System.currentTimeMillis() - start));
 					return n - 1;
 				}
 			}
 		}
-	  System.out.println("F Time :" + (System.currentTimeMillis() - start));
 		return -1;
 	}
 

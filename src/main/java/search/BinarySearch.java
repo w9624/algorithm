@@ -11,12 +11,13 @@ import impl.Search;
 public class BinarySearch implements Search{
 
 	/**
-	 * 循环查找
+	 * 循环
+	 * 二分查找的次数为 [log n]+1
 	 * @param arr
 	 * @param key
 	 * @return 
 	 */
-	@Complexity(time="log n", space="0")
+	@Complexity(time="log n", space="0", ASL="log(n+1) - 1")
 	public static int search (int[] arr, int key) {
 		int low = 0, high = arr.length - 1;
 		
